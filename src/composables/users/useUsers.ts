@@ -234,7 +234,7 @@ const useUsers = () => {
     },
   ];
 
-  return {};
+  return { data };
 };
 
 export default useUsers;

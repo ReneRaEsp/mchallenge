@@ -40,14 +40,16 @@
 <script setup lang="ts">
 //Store
 import { useModalStore } from "@/stores/modal";
+import { useUserStore } from "@/stores/user";
 //Composables
 import useModal from "@/composables/modal/useModal";
 import useUsers from "@/composables/users/useUsers";
 //Store
 const modalStore = useModalStore();
+const { user } = useUserStore();
 //Composables
 const { hideModal, showModal } = useModal();
-const { user, addUser } = useUsers();
+const { addUser } = useUsers();
 </script>
 
 <style lang="scss">

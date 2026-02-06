@@ -45,7 +45,9 @@ const useUsers = () => {
   getUsers();
 
   return {
+    //State
     user,
+    //Functions
     addUser,
   };
 };

@@ -5,7 +5,13 @@
         <v-btn @click="showModal" class="" color="secondary"> Add User </v-btn>
       </v-col>
       <v-col cols="12" class="pa-15 position-relative">
-        <Table :items="userStore.users" :headers="headers" />
+        <Table
+          :items="userStore.users"
+          :headers="headers"
+          showActions
+          @edit="openEditModal"
+          @delete="deleteUser"
+        />
         <ModalForm />
       </v-col>
     </v-row>
@@ -36,4 +42,13 @@ const headers: Headers[] = [
   { key: "email", label: "Email" },
   { key: "phone", label: "Phone" },
 ];
+
+//Functions
+const openEditModal = (id: number) => {
+  showModal(id);
+};
+
+const deleteUser = (id: number) => {
+  userStore.findUserByIdAndDelete(id);
+};
 </script>

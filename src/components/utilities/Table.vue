@@ -28,7 +28,7 @@
             variant="tonal"
             color="error"
             icon="mdi-delete"
-            @click="handleDeleteButton(item.id)"
+            @click="handleDeleteButton(item.id, item.name)"
           ></v-btn>
         </td>
       </tr>
@@ -48,14 +48,14 @@ defineProps<{
 
 const emit = defineEmits<{
   (e: "edit", id: number): void;
-  (e: "delete", id: number): void;
+  (e: "delete", payload: { id: number; name: string }): void;
 }>();
 
 const handleEditButton = (id: number) => {
   emit("edit", id);
 };
 
-const handleDeleteButton = (id: number) => {
-  emit("delete", id);
+const handleDeleteButton = (id: number, name: string) => {
+  emit("delete", { id, name });
 };
 </script>

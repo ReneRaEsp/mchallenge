@@ -10,7 +10,7 @@
           :headers="headers"
           showActions
           @edit="openEditModal"
-          @delete="deleteUser"
+          @delete="handleDeleteUser"
         />
         <ModalForm />
       </v-col>
@@ -48,7 +48,20 @@ const openEditModal = (id: number) => {
   showModal(id);
 };
 
-const deleteUser = (id: number) => {
-  userStore.findUserByIdAndDelete(id);
+type DeletePayload = {
+  id: number;
+  name: string;
+};
+
+const handleDeleteUser = ({ id, name }: DeletePayload) => {
+  const confirmed = confirm(
+    `¿Are you shure you want to delete this user: ${name}?`,
+  );
+
+  if (confirmed) {
+    userStore.findUserByIdAndDelete(id);
+  } else {
+    return;
+  }
 };
 </script>

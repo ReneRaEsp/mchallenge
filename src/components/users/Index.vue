@@ -5,7 +5,7 @@
         <v-btn @click="showModal" class="" color="secondary"> Add User </v-btn>
       </v-col>
       <v-col cols="12" class="pa-15 position-relative">
-        <Table :items="data" :headers="headers" />
+        <Table :items="userStore.users" :headers="headers" />
         <ModalForm />
       </v-col>
     </v-row>
@@ -13,17 +13,22 @@
 </template>
 
 <script setup lang="ts">
+//Stores
+import { useUserStore } from "@/stores/user";
 //Composables
 import useUsers from "@/composables/users/useUsers";
 import useModal from "@/composables/modal/useModal";
 //Components
 import Table from "@/components/utilities/Table.vue";
 import ModalForm from "@/components/utilities/ModalForm.vue";
-
+//Types
 import type { Headers } from "@/types";
 
-const { data } = useUsers();
+//Store
+const userStore = useUserStore();
+//Composables
 const { showModal } = useModal();
+useUsers();
 
 const headers: Headers[] = [
   { key: "name", label: "Name" },

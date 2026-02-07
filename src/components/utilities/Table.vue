@@ -2,17 +2,17 @@
   <v-table>
     <thead>
       <tr>
-        <th v-for="header in headers" key="header.key" class="text-left">
+        <th v-for="header in headers" key="header.key" class="text-center">
           {{ header.label }}
         </th>
-        <th v-if="showActions">Actions</th>
+        <th class="text-center" v-if="showActions">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in items">
         <td v-for="header in headers">
           <slot :item="item">
-            <td>{{ item[header.key] }}</td>
+            <p class="text-center">{{ item[header.key] }}</p>
           </slot>
         </td>
         <td v-if="showActions">

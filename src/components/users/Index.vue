@@ -31,7 +31,7 @@ import useUsers from "@/composables/users/useUsers";
 import useModal from "@/composables/modal/useModal";
 //Components
 import Table from "@/components/utilities/Table.vue";
-import ModalForm from "@/components/utilities/ModalForm.vue";
+import ModalForm from "@/components/users/Form.vue";
 import Loader from "@/components/utilities/Loader.vue";
 //Types
 import type { Headers } from "@/types";

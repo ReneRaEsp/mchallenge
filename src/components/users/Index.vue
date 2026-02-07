@@ -2,10 +2,14 @@
   <v-content>
     <v-row>
       <v-col cols="12" class="text-center pt-15">
-        <v-btn @click="showModal" class="" color="secondary"> Add User </v-btn>
+        <v-btn @click="openAddModal" class="" color="secondary">
+          Add User
+        </v-btn>
       </v-col>
-      <v-col cols="12" class="pa-15 position-relative">
+      <v-col cols="12" class="text-center pa-15 position-relative">
+        <Loader v-if="userStore.loading" />
         <Table
+          v-else
           :items="userStore.users"
           :headers="headers"
           showActions
@@ -19,6 +23,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
 //Stores
 import { useUserStore } from "@/stores/user";
 //Composables
@@ -27,6 +32,7 @@ import useModal from "@/composables/modal/useModal";
 //Components
 import Table from "@/components/utilities/Table.vue";
 import ModalForm from "@/components/utilities/ModalForm.vue";
+import Loader from "@/components/utilities/Loader.vue";
 //Types
 import type { Headers } from "@/types";
 
@@ -34,7 +40,7 @@ import type { Headers } from "@/types";
 const userStore = useUserStore();
 //Composables
 const { showModal } = useModal();
-useUsers();
+const { getUsers } = useUsers();
 
 const headers: Headers[] = [
   { key: "name", label: "Name" },
@@ -48,6 +54,11 @@ const openEditModal = (id: number) => {
   showModal(id);
 };
 
+const openAddModal = () => {
+  userStore.clearUser();
+  showModal();
+};
+
 type DeletePayload = {
   id: number;
   name: string;
@@ -55,7 +66,7 @@ type DeletePayload = {
 
 const handleDeleteUser = ({ id, name }: DeletePayload) => {
   const confirmed = confirm(
-    `¿Are you shure you want to delete this user: ${name}?`,
+    `¿Are you sure you want to delete this user: ${name}?`,
   );
 
   if (confirmed) {
@@ -64,4 +75,8 @@ const handleDeleteUser = ({ id, name }: DeletePayload) => {
     return;
   }
 };
+
+onMounted(() => {
+  getUsers();
+});
 </script>

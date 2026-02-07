@@ -30,7 +30,7 @@
           color="primary"
           text="Save"
           variant="tonal"
-          @click="addUser"
+          @click="saveUser"
         ></v-btn>
       </v-card-actions>
     </v-card>
@@ -48,13 +48,6 @@ import useUsers from "@/composables/users/useUsers";
 const modalStore = useModalStore();
 const { user } = useUserStore();
 //Composables
-const { hideModal, showModal } = useModal();
-const { addUser } = useUsers();
+const { hideModal } = useModal();
+const { saveUser } = useUsers();
 </script>
-
-<style lang="scss">
-.modal-container {
-  background-color: blue;
-  z-index: 40;
-}
-</style>

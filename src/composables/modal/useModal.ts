@@ -10,7 +10,7 @@ const useModal = () => {
     userStore.clearUser();
   };
 
-  const showModal = (id: number) => {
+  const showModal = (id?: number) => {
     modal.isActive = true;
     userStore.findUserById(id);
   };

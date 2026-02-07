@@ -3,24 +3,74 @@ import type { User } from "@/types";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
-    user: { id: null, name: "", username: "", email: "", phone: "" },
+    user: {
+      id: null as null | number,
+      name: "",
+      username: "",
+      email: "",
+      phone: "",
+    },
     users: [] as User[],
     loading: false,
   }),
   actions: {
-    findUserById(id: number) {
-      let user = this?.users.find((u) => u.id === id);
-      if (typeof user?.name == "string") {
-        this.user.name = user.name;
+    async fetchUsers() {
+      const URL_BASE = `https://jsonplaceholder.typicode.com`;
+      const URL = `${URL_BASE}/users`;
+      try {
+        this.loading = true;
+        const res = await fetch(URL);
+        this.users = await res.json();
+      } catch (e) {
+        console.log(e);
+      } finally {
+        this.loading = false;
       }
-      if (typeof user?.username == "string") {
-        this.user.username = user.username;
+    },
+    findUserById(id: number | undefined) {
+      if (id) {
+        let user = this?.users.find((u) => u.id === id);
+        if (typeof user?.id == "number") this.user.id = user.id;
+        if (typeof user?.name == "string") this.user.name = user.name;
+        if (typeof user?.username == "string")
+          this.user.username = user.username;
+        if (typeof user?.email == "string") this.user.email = user.email;
+        if (typeof user?.phone == "string") this.user.phone = user.phone;
       }
-      if (typeof user?.email == "string") {
-        this.user.email = user.email;
+    },
+    saveUser() {
+      console.log(this.user.id);
+      if (this.user.id != null) {
+        this.findUserByIdAndUpdate(this.user.id);
+      } else {
+        this.addUser();
       }
-      if (typeof user?.phone == "string") {
-        this.user.phone = user.phone;
+      this.clearUser();
+    },
+    addUser() {
+      const lastUser = this.users[this.users.length - 1];
+      const lastId =
+        lastUser && typeof lastUser?.id === "number" ? lastUser.id : 1;
+      const newId = lastId + 1;
+
+      this.users.push({
+        id: newId,
+        name: this.user.name,
+        username: this.user.username,
+        email: this.user.email,
+        phone: this.user.phone,
+      });
+    },
+    findUserByIdAndUpdate(id: number) {
+      let index = this.users.findIndex((u) => u.id === id);
+
+      if (index !== -1) {
+        this.users[index]!.name = this.user.name;
+        this.users[index]!.username = this.user.username;
+        this.users[index]!.phone = this.user.phone;
+        this.users[index]!.email = this.user.email;
+      } else {
+        return;
       }
     },
     findUserByIdAndDelete(id: number) {

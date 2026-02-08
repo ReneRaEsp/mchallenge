@@ -1,5 +1,5 @@
 <template>
-  <v-table>
+  <v-table max-width="200">
     <thead>
       <tr>
         <th v-for="header in headers" key="header.key" class="text-center">

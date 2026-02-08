@@ -1,23 +1,23 @@
 <template>
-  <v-dialog v-model="modalStore.isActive">
+  <v-dialog max-width="500" class="text-center" v-model="modalStore.isActive">
     <v-card title="Add User" prepend-icon="mdi-account">
       <v-card-text>
         <v-row dense>
-          <v-col cols="12" md="4" sm="6">
+          <v-col cols="6">
             <v-text-field
               label="Name"
               v-model="name"
               :error-messages="nameError"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4" sm="6">
+          <v-col cols="6">
             <v-text-field
               label="Username"
               v-model="username"
               :error-messages="usernameError"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4" sm="6">
+          <v-col cols="6">
             <v-text-field
               label="Email"
               v-model="email"
@@ -25,7 +25,7 @@
               :error-messages="emailError"
             ></v-text-field>
           </v-col>
-          <v-col cols="12" md="4" sm="6">
+          <v-col cols="6">
             <v-text-field
               label="Phone"
               v-model="phone"

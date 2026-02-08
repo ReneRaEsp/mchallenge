@@ -27,16 +27,20 @@ Gestión de Estado: Manejo de indicadores de carga (loading states) y persistenc
 Arquitectura Limpia: Separación de responsabilidades mediante Composables para lógica de negocio e Interfaces para contratos de datos.
 
 ## ⚙️ Instalación y Configuración
-Clonar el repositorio:
+###Clonar el repositorio:
 
 git clone https://github.com/ReneRaEsp/mchallenge
+
 cd mchallenge
-Instalar dependencias:
+
+### Instalar dependencias:
 
 npm install
-Ejecutar en modo desarrollo:
+
+### Ejecutar en modo desarrollo:
 
 npm run dev
-Construir para producción:
+
+### Construir para producción:
 
 npm run build

@@ -20,7 +20,7 @@ interface Company {
 
 //User Address Company
 export interface User {
-  id: Number | null | undefined;
+  id: Number | null | string;
   name: String;
   username: String;
   email: String;

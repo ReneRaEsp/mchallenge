@@ -1,10 +1,11 @@
 import { defineStore } from "pinia";
 import type { User } from "@/types";
+import { v4 as uuidv4 } from "uuid";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
     user: {
-      id: null as null | number,
+      id: null as null | number | string,
       name: "",
       username: "",
       email: "",
@@ -27,7 +28,7 @@ export const useUserStore = defineStore("user", {
         this.loading = false;
       }
     },
-    findUserById(id: number | undefined) {
+    findUserById(id: number | undefined | string) {
       if (id) {
         let user = this?.users.find((u) => u.id === id);
         if (typeof user?.id == "number") this.user.id = user.id;
@@ -39,7 +40,6 @@ export const useUserStore = defineStore("user", {
       }
     },
     saveUser() {
-      console.log(this.user.id);
       if (this.user.id != null) {
         this.findUserByIdAndUpdate(this.user.id);
       } else {
@@ -48,11 +48,7 @@ export const useUserStore = defineStore("user", {
       this.clearUser();
     },
     addUser() {
-      const lastUser = this.users[this.users.length - 1];
-      const lastId =
-        lastUser && typeof lastUser?.id === "number" ? lastUser.id : 1;
-      const newId = lastId + 1;
-
+      const newId: string = uuidv4();
       this.users.push({
         id: newId,
         name: this.user.name,
@@ -61,7 +57,7 @@ export const useUserStore = defineStore("user", {
         phone: this.user.phone,
       });
     },
-    findUserByIdAndUpdate(id: number) {
+    findUserByIdAndUpdate(id: number | string) {
       let index = this.users.findIndex((u) => u.id === id);
 
       if (index !== -1) {

@@ -1,10 +1,13 @@
 # User Management Dashboard - Tech Challenge
+
 Este proyecto es una solución técnica desarrollada para un proceso de selección. Consiste en un Dashboard de gestión de usuarios construido con Vue 3, TypeScript y Vuetify, siguiendo las mejores prácticas de arquitectura de software y escalabilidad.
 
 ## 🚀 Demo
+
 Puedes ver la aplicación en vivo aquí: https://6988d3cad3572e93d7ef0069--mchallenge.netlify.app/
 
 ## 🛠️ Tecnologías y Stack
+
 Framework: Vue.js 3 (Composition API con <script setup>)
 
 Lenguaje: TypeScript (Tipado estricto para modelos de datos)
@@ -18,6 +21,7 @@ Herramienta de Construcción: Vite
 Iconos: Material Design Icons (MDI)
 
 ## 📋 Características y Requerimientos
+
 Listado de Usuarios: Consumo de API REST y almacenamiento en estado global (Pinia).
 
 Componentes Reutilizables: Implementación de una BaseTable genérica utilizando Scoped Slots y Generics de TypeScript.
@@ -25,6 +29,17 @@ Componentes Reutilizables: Implementación de una BaseTable genérica utilizando
 Gestión de Estado: Manejo de indicadores de carga (loading states) y persistencia en memoria durante la sesión.
 
 Arquitectura Limpia: Separación de responsabilidades mediante Composables para lógica de negocio e Interfaces para contratos de datos.
+
+## 🏗️ Estructura del Proyecto
+
+src/
+├── assets #Recursos estáticos
+├── components # Componentes de base y de negocio (Reutilizables)
+├── composables # Lógica de negocio extraída
+├── pages # Páginas principales de la aplicación
+├── schemas # Esquemas para las validaciones
+├── stores # Estados globales de la aplicación manejados con Pinia
+└── types # Definicion de typos de TypeScript
 
 ## ⚙️ Instalación y Configuración
 

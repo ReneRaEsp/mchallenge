@@ -1,6 +1,6 @@
 <template>
   <v-dialog max-width="500" class="text-center" v-model="modalStore.isActive">
-    <v-card title="Add User" prepend-icon="mdi-account">
+    <v-card :title="title">
       <v-card-text>
         <v-row dense>
           <v-col cols="6">
@@ -52,7 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch } from "vue";
+import { watch, ref } from "vue";
 import { useForm, useField } from "vee-validate";
 import { userSchema } from "@/schemas/userSchema";
 //Store
@@ -61,6 +61,10 @@ import { useUserStore } from "@/stores/user";
 //Composables
 import useModal from "@/composables/modal/useModal";
 import useUsers from "@/composables/users/useUsers";
+
+//State
+const title = ref("Add User");
+
 //Store
 const modalStore = useModalStore();
 const userStore = useUserStore();
@@ -88,6 +92,8 @@ watch(
   () => userStore.user.id,
   (id) => {
     if (id !== null) {
+      title.value = "Edit User";
+
       setValues({
         name: userStore.user.name,
         username: userStore.user.username,

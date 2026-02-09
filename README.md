@@ -32,14 +32,14 @@ Arquitectura Limpia: Separación de responsabilidades mediante Composables para 
 
 ## 🏗️ Estructura del Proyecto
 
-src/
-├── assets #Recursos estáticos
-├── components # Componentes de base y de negocio (Reutilizables)
-├── composables # Lógica de negocio extraída
-├── pages # Páginas principales de la aplicación
-├── schemas # Esquemas para las validaciones
-├── stores # Estados globales de la aplicación manejados con Pinia
-└── types # Definicion de typos de TypeScript
+src/ <br>
+├── assets #Recursos estáticos <br>
+├── components # Componentes de base y de negocio (Reutilizables) <br>
+├── composables # Lógica de negocio extraída <br>
+├── pages # Páginas principales de la aplicación <br>
+├── schemas # Esquemas para las validaciones <br>
+├── stores # Estados globales de la aplicación manejados con Pinia <br>
+└── types # Definicion de typos de TypeScript <br>
 
 ## ⚙️ Instalación y Configuración
 
